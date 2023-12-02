@@ -1,4 +1,5 @@
 import nationalData from '../data/national-history.json';
+import stateData from '../data/all-states-history.json';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,11 +11,17 @@ import Paper from '@mui/material/Paper';
 
 function CovidTable() {
 
-    const latestData = nationalData[0]
+    const latestNatData = nationalData[0]
+    const latestStateDate = stateData.reduce((acc, stateInfo) => {
+        if(!acc[stateInfo.state] || stateInfo.date > acc[stateInfo.state].date) {
+            acc[stateInfo.state] = stateInfo;
+        }
+        return acc
+    }, {})
 
     return (
         <TableContainer component={Paper}>
-            <h2>Covid-19 Table</h2>
+            <h2>United States Country Wide Covid Data</h2>
             <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                 <TableHead>
                     <TableRow>
@@ -28,12 +35,34 @@ function CovidTable() {
                     <TableRow
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                        <TableCell>{latestData.totalTestResults}</TableCell>
-                        <TableCell>{latestData.positive}</TableCell>
-                        {/* Still need data for recovered cases
-                        <TableCell>{latestData.recovered}</TableCell> */}
-                        <TableCell>{latestData.death}</TableCell>
+                        <TableCell>{latestNatData.totalTestResults}</TableCell>
+                        <TableCell>{latestNatData.positive}</TableCell>
+                        <TableCell>dummy data</TableCell>
+                        <TableCell>{latestNatData.death}</TableCell>
                     </TableRow>
+                </TableBody>
+            </Table>
+            <h2>Per State Covid Data</h2>
+            <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>State</TableCell>
+                        <TableCell>Active</TableCell>
+                        <TableCell>Recovered</TableCell>
+                        <TableCell>Deaths</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {Object.values(latestStateDate).map((stateInfo) => (
+                        <TableRow key={stateInfo}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell>{stateInfo.state}</TableCell>
+                            <TableCell>{stateInfo.positive}</TableCell>
+                            <TableCell>dummy data</TableCell>
+                            <TableCell>{stateInfo.death}</TableCell>
+                        </TableRow>
+                    ))}
                 </TableBody>
             </Table>
         </TableContainer>
