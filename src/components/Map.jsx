@@ -8,7 +8,7 @@ function Map() {
     margin: '0 auto',
   }
   return (
-    <MapContainer center={[37.0902, 94.7129]} scrollWheelZoom={false} style={mapStyle}>
+    <MapContainer center={[39.8283, -98.5795]} zoom={4} scrollWheelZoom={false} style={mapStyle}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
