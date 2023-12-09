@@ -71,6 +71,14 @@ function Map() {
 
   return (
     <div>
+      {(onSelect.state && (
+        <ul>
+          <li><strong>{onSelect.state}</strong></li>
+          <li>Active: {onSelect.active}</li>
+          <li>Recovered: {onSelect.recovered}</li>
+          <li>Deaths: {onSelect.deaths}</li>
+        </ul>
+      ))}
       <MapContainer center={[39.8283, -98.5795]} zoom={4} scrollWheelZoom={false} style={mapStyle}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
