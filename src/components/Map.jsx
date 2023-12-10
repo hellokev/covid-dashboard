@@ -9,7 +9,7 @@ import stateData from '../data/all-states-history.json';
 
 function Map() {
   const [onSelect, setOnselect] = useState({});
-  const highlightFeature = (e=> {
+  const highlightFeature = (e => {
     var layer = e.target;
     const { State, Active, Recovered, Deaths } = e.target.feature.properties;
     setOnselect({
