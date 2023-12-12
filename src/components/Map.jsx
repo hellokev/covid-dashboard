@@ -9,13 +9,14 @@ function Map() {
   const [onSelect, setOnselect] = useState({});
   const highlightFeature = (e => {
     var layer = e.target;
-    const { State, Active, Recovered, Deaths } = e.target.feature.properties;
+    const { name, positive, recovered, death } = e.target.feature.properties;
     setOnselect({
-        state: State,
-        active: Active,
-        recovered: Recovered,
-        deaths: Deaths
+      state: name,
+      active: positive,
+      recovered: recovered,
+      deaths: death
     });
+
     layer.setStyle({
         weight: 1,
         color: "black",
