@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { features } from '../data/us-states.json';
 import "leaflet/dist/leaflet.css"
 import '../assets/stylesheets/components/map.css';
-import nationalData from '../data/national-history.json';
-import stateData from '../data/all-states-history.json';
 
 
 function Map() {
@@ -72,7 +70,7 @@ function Map() {
   return (
     <div>
       {(onSelect.state && (
-        <ul>
+        <ul className="state-stats">
           <li><strong>{onSelect.state}</strong></li>
           <li>Active: {onSelect.active}</li>
           <li>Recovered: {onSelect.recovered}</li>
