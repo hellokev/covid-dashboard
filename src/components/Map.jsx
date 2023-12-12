@@ -1,12 +1,24 @@
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import { useState } from 'react';
 import { features } from '../data/us-states.json';
+import Popover from '@mui/material/Popover';
 import "leaflet/dist/leaflet.css"
 import '../assets/stylesheets/components/map.css';
 
 
 function Map() {
   const [onSelect, setOnselect] = useState({});
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
   const highlightFeature = (e => {
     var layer = e.target;
     const { name, positive, recovered, death } = e.target.feature.properties;
@@ -44,22 +56,26 @@ function Map() {
       });
   }
 
-  const mapPolygonColorToDensity=(density => {
-      return density > 3023
-        ? '#67001f'
-        : density > 676
-        ? '#980043'
-        : density > 428
-        ? '#ce1256'
-        : density > 236
-        ? '#e7298a'
-        : density > 23
-        ? '#d4b9da'
-        : '#f1eef6';
-  })
+  const mapPolygonColorToDensity = (positive) => {
+    return positive > 1000000
+      ? '#ff00ff' // brightest purple
+      : positive > 800000
+      ? '#d400d4'
+      : positive > 600000
+      ? '#b300b3'
+      : positive > 400000
+      ? '#990099'
+      : positive > 200000
+      ? '#7a007a'
+      : positive > 0
+      ? '#4d004d' // darker purple
+      : '#4d004d'; // default color for zero or negative values (negative values not possible)
+  };
+  
+  
   const style = (feature => {
       return ({
-          fillColor: mapPolygonColorToDensity(feature.properties.Desnity),
+          fillColor: mapPolygonColorToDensity(feature.properties.positive),
           weight: 1,
           opacity: 1,
           color: 'white',
@@ -70,14 +86,34 @@ function Map() {
 
   return (
     <div>
-      {(onSelect.state && (
-        <ul className="state-stats">
-          <li><strong>{onSelect.state}</strong></li>
-          <li>Active: {onSelect.active}</li>
-          <li>Recovered: {onSelect.recovered}</li>
-          <li>Deaths: {onSelect.deaths}</li>
-        </ul>
-      ))}
+      <Popover
+        id="mouse-over-popover"
+        sx={{
+          pointerEvents: 'none',
+        }}
+        open={open}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+        disableScrollLock={true}
+      >
+        {(onSelect.state && (
+          <ul className="state-stats">
+            <li><strong>{onSelect.state}</strong></li>
+            <li>Active: {onSelect.active}</li>
+            <li>Recovered: {onSelect.recovered}</li>
+            <li>Deaths: {onSelect.deaths}</li>
+          </ul>
+        ))}
+      </Popover>
       <MapContainer center={[39.8283, -98.5795]} zoom={4} scrollWheelZoom={false} style={mapStyle}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
