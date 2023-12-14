@@ -1,11 +1,10 @@
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet";
 import { useState } from 'react';
 import { features } from '../data/us-states.json';
 import Popover from '@mui/material/Popover';
 import Legend from './Legend';
 import "leaflet/dist/leaflet.css"
 import '../assets/stylesheets/components/map.css';
-
 
 function Map() {
   const [onSelect, setOnselect] = useState({});
@@ -84,6 +83,7 @@ function Map() {
           fillOpacity: 0.5
       });
   });
+  
 
   return (
     <div>

@@ -39,7 +39,7 @@ function CovidTable() {
                             >
                                 <TableCell>{latestNatData.totalTestResults}</TableCell>
                                 <TableCell>{latestNatData.positive}</TableCell>
-                                <TableCell>dummy data</TableCell>
+                                <TableCell>{latestNatData.recovered}</TableCell>
                                 <TableCell>{latestNatData.death}</TableCell>
                             </TableRow>
                         </TableBody>
@@ -66,7 +66,7 @@ function CovidTable() {
                                 >
                                     <TableCell>{stateInfo.state}</TableCell>
                                     <TableCell>{stateInfo.positive}</TableCell>
-                                    <TableCell>dummy data</TableCell>
+                                    <TableCell>{stateInfo.recovered}</TableCell>
                                     <TableCell>{stateInfo.death}</TableCell>
                                 </TableRow>
                             ))}
