@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import { useState } from 'react';
 import { features } from '../data/us-states.json';
 import Popover from '@mui/material/Popover';
+import Legend from './Legend';
 import "leaflet/dist/leaflet.css"
 import '../assets/stylesheets/components/map.css';
 
@@ -124,6 +125,7 @@ function Map() {
           style={style} 
           onEachFeature={onEachFeature}/>
         )}
+        <Legend />
       </MapContainer>
     </div>
   )

@@ -1,7 +1,6 @@
 import './App.css'
 import CovidTable from './components/CovidTable'
 import Map from './components/Map.jsx'
-import Legend from './components/Legend.jsx';
 import HorizontalBarChart from './components/HorizontalBarChart.jsx';
 import PieChartComponent from './components/PieChartComponent.jsx';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -25,7 +24,6 @@ function App() {
         {/* <HorizontalBarChart /> */}
         <PieChartComponent />
         <Map />
-        <Legend />
       </ThemeProvider>
     </>
   )
