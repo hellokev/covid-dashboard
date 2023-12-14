@@ -16,7 +16,8 @@
    "positiveIncrease": 41835,
    "states": 56,
    "totalTestResults": 363825123,
-   "totalTestResultsIncrease": 1170059
+   "totalTestResultsIncrease": 1170059,
+   "recovered": 28241338
  },
  {
    "date": "2021-03-06",
