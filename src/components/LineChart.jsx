@@ -42,7 +42,7 @@ export default function BasicLineChart() {
   
   return (
     <>
-    <div style={{display: 'flex', justifyContent: 'space-evenly',padding: '10px'}}>
+    <div style={{display: 'flex', justifyContent: 'space-evenly', padding: '10px'}}>
       <div className='Deaths'>
         <h2>Deaths from COVID 2020-2021</h2>
         <LineChart
