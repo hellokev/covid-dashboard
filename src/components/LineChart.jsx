@@ -41,67 +41,73 @@ export default function BasicLineChart() {
   
   
   return (
-    <div style={{padding: '10px'}}>
-      <h2>Deaths from COVID 2020-2021</h2>
-      <LineChart
-        xAxis={[{ data: [0, 50000, 100000, 200000, 400000, 600000] }]}
-        series={[
+    <>
+    <div style={{display: 'flex', justifyContent: 'space-evenly',padding: '10px'}}>
+      <div className='Deaths'>
+        <h2>Deaths from COVID 2020-2021</h2>
+        <LineChart
+          xAxis={[{ data: [0, 50000, 100000, 200000, 400000, 600000] }]}
+          series={[
+            {
+              data: [20, 54804, 168371, 256585, 386839, 515151],
+            },
+          ]}
+          width={500}
+          height={300}
+        />
+      </div>
+      
+      <div className='Variant'>
+      <h2>Delta & Omnicron Cases</h2>
+        <LineChart
+        sx={{
+          '& .MuiLineElement-root': {
+            strokeDasharray: '10 5',
+            strokeWidth: 5,
+          },
+          '& .MuiAreaElement-series-Delta': {
+            fill: "url('#myGradient')",
+          },
+        }}
+        xAxis={[
           {
-            data: [20, 54804, 168371, 256585, 386839, 515151],
+            id: 'Years',
+            data: years,
+            scaleType: 'time',
+            valueFormatter: (date) => date.getFullYear().toString(),
           },
         ]}
-        width={500}
+        series={[
+          {
+            id: 'Delta',
+            data: Delta,
+            label: 'Delta',
+            stack: 'total',
+            area: true,
+            showMark: false,
+          },
+          {
+            id: 'Omnicron',
+            data: Omnicron,
+            label: 'Omnicron',
+            stack: 'total',
+            area: true,
+            showMark: false,
+          },
+        ]}
+        margin={{ left: 60, top: 10, right: 20 }}
+        width={600}
         height={300}
-      />
-      
-
-      <LineChart
-      sx={{
-        '& .MuiLineElement-root': {
-          strokeDasharray: '10 5',
-          strokeWidth: 5,
-        },
-        '& .MuiAreaElement-series-Delta': {
-          fill: "url('#myGradient')",
-        },
-      }}
-      xAxis={[
-        {
-          id: 'Years',
-          data: years,
-          scaleType: 'time',
-          valueFormatter: (date) => date.getFullYear().toString(),
-        },
-      ]}
-      series={[
-        {
-          id: 'Delta',
-          data: Delta,
-          label: 'Delta',
-          stack: 'total',
-          area: true,
-          showMark: false,
-        },
-        {
-          id: 'Omnicron',
-          data: Omnicron,
-          label: 'Omnicron',
-          stack: 'total',
-          area: true,
-          showMark: false,
-        },
-      ]}
-      margin={{ left: 60, top: 10, right: 20 }}
-      width={600}
-      height={300}
-    >
-      <defs>
-        <linearGradient id="myGradient" gradientTransform="rotate(90)">
-          <stop offset="5%" stopColor="gold" />
-          <stop offset="95%" stopColor="red" />
-        </linearGradient>
-      </defs>
+      >
+          <defs>
+            <linearGradient id="myGradient" gradientTransform="rotate(90)">
+              <stop offset="5%" stopColor="gold" />
+              <stop offset="95%" stopColor="red" />
+            </linearGradient>
+          </defs>
     </LineChart>
     </div>
+    </div>
+    </>
   );
 }

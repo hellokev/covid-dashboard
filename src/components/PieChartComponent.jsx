@@ -1,4 +1,3 @@
-import * as React from 'react';
 import nationalData from '../data/national-history.json';
 import { PieChart } from '@mui/x-charts/PieChart';
 
@@ -23,30 +22,37 @@ const pieChartDataDeathsRecovered = [
 export default function PieChartComponent() {
   return (
     <>
-      <h2>United States of America&apos;s COVID Stats in a Pie Chart</h2>
-      <PieChart
-        series={[
-          {
-            data: pieChartData,
-            highlightScope: { faded: 'global', highlighted: 'item' },
-            faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
-          },
-        ]}
-        height={200}
-        width={600}
-      />
-      <h2>Recovered to Death Ratio</h2>
-      <PieChart
-        series={[
-          {
-            data: pieChartDataDeathsRecovered,
-            highlightScope: { faded: 'global', highlighted: 'item' },
-            faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
-          },
-        ]}
-        height={200}
-        width={600}
-      />
+    <div style={{display: 'flex', justifyContent: 'space-evenly',}}>
+      <div>
+        <h2>United States of America&apos;s COVID Stats in a Pie Chart</h2>
+        <PieChart
+          series={[
+            {
+              data: pieChartData,
+              highlightScope: { faded: 'global', highlighted: 'item' },
+              faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+            },
+          ]}
+          height={200}
+          width={600}
+        />
+      </div>
+
+        <div>
+          <h2>Recovered to Death Ratio</h2>
+          <PieChart
+            series={[
+              {
+                data: pieChartDataDeathsRecovered,
+                highlightScope: { faded: 'global', highlighted: 'item' },
+                faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+              },
+            ]}
+            height={200}
+            width={600}
+          />
+        </div>
+      </div>
     </>
   );
 }
