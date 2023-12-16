@@ -58,7 +58,7 @@ export default function BasicLineChart() {
       </div>
       
       <div className='Variant'>
-      <h2>Delta & Omnicron Cases</h2>
+      <h2>Delta & Omicron Cases</h2>
         <LineChart
         sx={{
           '& .MuiLineElement-root': {
@@ -89,7 +89,7 @@ export default function BasicLineChart() {
           {
             id: 'Omnicron',
             data: Omnicron,
-            label: 'Omnicron',
+            label: 'Omicron',
             stack: 'total',
             area: true,
             showMark: false,
